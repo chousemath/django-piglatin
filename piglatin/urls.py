@@ -18,7 +18,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^home/', views.home, name='home'),
+    url(r'^$', views.home, name='home'),
     url(r'^piglatin/', views.piglatin, name="piglatin"),
     url(r'^reverse/', views.reverse_phrase, name='reverse'),
     url(r'^novowels/', views.novowels, name='novowels'),
