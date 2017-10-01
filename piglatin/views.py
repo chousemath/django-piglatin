@@ -1,10 +1,8 @@
 """Contains all view logic"""
 
-from typing import Callable
 from django.http import HttpResponse
 from django.shortcuts import render
-
-VOWELS = ['a', 'e', 'i', 'o', 'u']
+from . import utility
 
 def about(request):
     """Renders the about page"""
@@ -17,17 +15,17 @@ def home(request):
 def piglatin(request):
     """Page containing results of pig latin translation"""
     original = request.GET['phrase-piglatin']
-    pigphrase = map_over_string(original, convert_to_piglatin)
+    pigphrase = utility.map_over_string(original, utility.convert_to_piglatin)
     print(pigphrase)
     return render(request, 'piglatin.html', {
         'original': original,
         'transformed': pigphrase
     })
 
-def reverse(request):
+def reverse_phrase(request):
     """Page containing results of text reversal"""
     original = request.GET['phrase-reverse']
-    reverse_string = map_over_string(original, reverse_word)
+    reverse_string = utility.map_over_string(original, utility.reverse_word)
     print(reverse_string)
     return render(request, 'reverse.html', {
         'original': original,
@@ -43,23 +41,3 @@ def novowels(request):
 def not_found(request):
     """Default page for unresolved routing"""
     return render(request, 'not_found.html')
-
-def map_over_string(original: str, func: Callable) -> str:
-    """Maps a function over a string"""
-    return ' '.join(list(map(func, original.split())))
-
-def convert_to_piglatin(original: str) -> str:
-    """Converts a word to its piglatin equivalent"""
-    first = original[0]
-    pig = ''
-    if first in VOWELS:
-        pig = original + 'way'
-    else:
-        pig = original[1:] + first + 'ay'
-    return pig
-
-def reverse_word(original: str) -> str:
-    reverse = ''
-    for character in original:
-        reverse = character + reverse
-    return reverse

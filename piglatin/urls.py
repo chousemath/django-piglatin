@@ -20,7 +20,7 @@ from . import views
 urlpatterns = [
     url(r'^home/', views.home, name='home'),
     url(r'^piglatin/', views.piglatin, name="piglatin"),
-    url(r'^reverse/', views.reverse, name='reverse'),
+    url(r'^reverse/', views.reverse_phrase, name='reverse'),
     url(r'^novowels/', views.novowels, name='novowels'),
     url(r'^about/', views.about, name='about'),
     url(r'^admin/', admin.site.urls),
