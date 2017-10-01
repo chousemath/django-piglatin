@@ -20,15 +20,19 @@ def piglatin(request):
     pigphrase = map_over_string(original, convert_to_piglatin)
     print(pigphrase)
     return render(request, 'piglatin.html', {
-      'original': original,
-      'transformed': pigphrase
+        'original': original,
+        'transformed': pigphrase
     })
 
 def reverse(request):
     """Page containing results of text reversal"""
-    original_text = request.GET['phrase-reverse']
-    print(original_text)
-    return render(request, 'reverse.html')
+    original = request.GET['phrase-reverse']
+    reverse_string = map_over_string(original, reverse_word)
+    print(reverse_string)
+    return render(request, 'reverse.html', {
+        'original': original,
+        'transformed': reverse_string
+    })
 
 def novowels(request):
     """Page containing results of vowel removal"""
@@ -53,3 +57,9 @@ def convert_to_piglatin(original: str) -> str:
     else:
         pig = original[1:] + first + 'ay'
     return pig
+
+def reverse_word(original: str) -> str:
+    reverse = ''
+    for character in original:
+        reverse = character + reverse
+    return reverse
