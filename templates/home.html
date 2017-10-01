@@ -1,0 +1,15 @@
+<h1>Text Transformation</h1>
+<form action="{% url 'piglatin' %}">
+  <input type="text" name="phrase-piglatin" />
+  <input type="submit" value="translate"></form>
+</form>
+
+<form action="{% url 'reverse' %}">
+  <input type="text" name="phrase-reverse" />
+  <input type="submit" value="reverse"></form>
+</form>
+
+<form action="{% url 'novowels' %}">
+  <input type="text" name="phrase-no-vowels" />
+  <input type="submit" value="remove vowels" />
+</form>
